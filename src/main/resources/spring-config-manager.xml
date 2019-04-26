@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName">
+    <!-- 使用默认无参构造函数-->
+    <bean id="testManager" class="com.my.demo.manager.impl.TestManagerImpl" scope="singleton">
+        <property name="string" value="12345"/>
+        <property name="testManagerFactory" ref="testManagerFactory"/>
+
+        <property name="listString">
+            <list>
+                <value>222</value>
+                <value>222</value>
+                <value>222</value>
+                <value>222</value>
+                <value>222</value>
+            </list>
+        </property>
+        <property name="listObject">
+            <list>
+                <ref bean="testManagerFactory" />
+            </list>
+        </property>
+
+        <property name="map">
+            <map>
+                <entry key="1111" value="23123"></entry>
+            </map>
+        </property>
+        <property name="setString">
+            <set>
+                <value>234234234234</value>
+            </set>
+        </property>
+
+    </bean>
+
+    <!-- 实例工厂（了解）-->
+    <bean id="testManagerFactory" class="com.my.demo.manager.impl.TestManagerFactory"/>
+    <bean id="testManagerByFactory" factory-bean="testManagerFactory" factory-method="createTestManagerImpl"/>
+</beans>
