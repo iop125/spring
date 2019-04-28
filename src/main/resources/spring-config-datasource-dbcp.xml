@@ -6,7 +6,7 @@
        default-autowire="byName">
 
 
-    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="${plugin-cente.jdbc.driver}"/>
         <property name="jdbcUrl" value="${plugin-cente.jdbc.url}"/>
         <property name="user" value="${plugin-cente.jdbc.username}"/>

@@ -18,6 +18,7 @@ public class Demo2 {
             System.out.println("--------");
         }
         jdbcTemplate.update("insert into aaa values (?,?)", 12,10000);
+        jdbcTemplate.queryForObject("",Demo2.class);
     }
 
     public void run2(){
