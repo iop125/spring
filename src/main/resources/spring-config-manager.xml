@@ -46,7 +46,11 @@
     <!--<bean id="testAdviceForXml" class="com.my.demo.manager.impl.TestAdviceForXmlImpl" scope="singleton"/>-->
     <bean id="myAdviceForXML" class="com.my.demo.advice.MyAdviceForXML" scope="singleton"/>
     <aop:config>
-        <!--基于接口  通知 -->
+        <!---->
+        <aop:pointcut id="sdfd" expression="execution(* *..*.*.TestAdviceForGUwen.testAdd(..))" />
+        <aop:advisor advice-ref="myAdviceForGuwen" pointcut-ref="sdfd"/>
+
+        <!-- -->
         <aop:aspect ref="myAdviceForXML">
             <aop:before method="before" pointcut="execution(* *..*.*.*ForXmlImpl.testAdd(..))"></aop:before>
             <aop:before method="before" pointcut="execution(* *..*.*.*ForXmlImpl.testAdd2(..))"></aop:before> <!--不好用基于接口 -->
@@ -55,6 +59,7 @@
             <aop:after-throwing method="throwLong" pointcut="execution(* *..*.*.*ForXmlImpl.testAdd5(..))"></aop:after-throwing> <!--不好用基于接口 -->
             <aop:around method="around" pointcut="execution(* *..*.*.*ForXmlImpl.testAdd6(..))"></aop:around> <!--除了异常 和正常代码一样死掉 -->
         </aop:aspect>
+
     </aop:config>
 
 </beans>
