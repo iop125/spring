@@ -8,16 +8,31 @@
        http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:component-scan base-package="com.my.demo"/>
+
+    <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <!-- 为集成安全部配置文件加解密组件, 需在项目中所有的PropertySourcesPlaceholderConfigurer配置上ignoreUnresolveablePlaceholders为true -->
+        <property name="ignoreUnresolvablePlaceholders" value="true" />
+        <property name="locations">
+            <list>
+                <!-- 这里放置其他配置文件, 如果没有, 可以不写 -->
+                <value>classpath:datasource-config.properties</value>
+            </list>
+        </property>
+    </bean>
     <!--引入多文件  模块开发-->
     <import resource="spring-config-manager.xml"/>
-    <!--<import resource="spring-config-datasource-dbcp.xml"/>-->
+    <import resource="spring-config-dao.xml"/>
+    <import resource="spring-config-datasource-dbcp.xml"/>
 
-    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
-        <!--<property name="driverClassName" value="com.mysql.jdbc.Driver"/>-->
-        <!--<property name="url" value="jdbc:mysql:///spring_day03"/>-->
-        <!--<property name="username" value="root"/>-->
-        <!--<property name="password" value="root"/>-->
-    <!--</bean>-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${plugin-cente.jdbc.driver}"/>
+        <property name="url" value="${plugin-cente.jdbc.url}"/>
+        <property name="username" value="${plugin-cente.jdbc.username}"/>
+        <property name="password" value="${plugin-cente.jdbc.password}"/>
+    </bean>
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
 
 
 </beans>

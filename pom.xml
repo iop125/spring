@@ -55,6 +55,22 @@
       <artifactId>mysql-connector-java</artifactId>
       <version>5.1.35</version>
     </dependency>
+    <dependency>
+      <groupId>commons-dbcp</groupId>
+      <artifactId>commons-dbcp</artifactId>
+      <version>1.4</version>
+    </dependency>
+    <!--数据源c3p0 -->
+    <dependency>
+      <groupId>com.mchange</groupId>
+      <artifactId>c3p0</artifactId>
+      <version>0.9.5-pre8</version>
+    </dependency>
+    <dependency>
+      <groupId>com.mchange</groupId>
+      <artifactId>mchange-commons-java</artifactId>
+      <version>0.2.12</version>
+    </dependency>
     <!--springframework-->
     <dependency>
       <groupId>org.springframework</groupId>
@@ -81,6 +97,7 @@
       <artifactId>spring-jdbc</artifactId>
       <version>5.1.5.RELEASE</version>
     </dependency>
+
     <dependency>
       <groupId>com.github.stefanbirkner</groupId>
       <artifactId>system-rules</artifactId>
