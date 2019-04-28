@@ -2,13 +2,15 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <context:component-scan base-package="com.my.demo"/>
-
+    <!--开启aop自动代理-->
+    <aop:aspectj-autoproxy/>
     <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
         <!-- 为集成安全部配置文件加解密组件, 需在项目中所有的PropertySourcesPlaceholderConfigurer配置上ignoreUnresolveablePlaceholders为true -->
         <property name="ignoreUnresolvablePlaceholders" value="true" />

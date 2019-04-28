@@ -1,6 +1,8 @@
 package com.my.demo.main;
 
 import com.my.demo.dao.Demo2;
+import com.my.demo.manager.TestManager;
+import com.my.demo.manager.impl.TestManagerImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -14,8 +16,8 @@ public class TestMain {
 
     public void doApplicationContext() {
         //构造器
-//        TestManagerImpl TestManagerImpl1 = (TestManagerImpl) context.getBean("testManager");
-//        TestManagerImpl1.testAdd();
+        TestManagerImpl TestManagerImpl1 = (TestManagerImpl) context.getBean("testManager");
+        TestManagerImpl1.testAdd();
 //        //动态工厂
 //        TestManagerImpl TestManagerImpl2 = (TestManagerImpl)context.getBean("testManagerByFactory");
 //        TestManagerImpl2.testAdd();
@@ -32,11 +34,37 @@ public class TestMain {
         demo2.run2();
     }
 
+    /**
+     * xml 配置注解
+     */
+    public void adviceForXml() {
+        TestManager TestManagerImpl1 = (TestManager) context.getBean("testAdviceForXml");
+//        TestManagerImpl1.testAdd();
+//          TestManagerImpl1.testAdd3();//有异常也触发
+//        TestManagerImpl1.testAdd4();//after-returning 有异常不触发
+//        TestManagerImpl1.testAdd5();//after-throwing  有异常才触发
+        TestManagerImpl1.testAdd6();//around
+    }
+
+    /**
+     * 需要配置开启aop自动代理 <aop:aspectj-autoproxy></aop:aspectj-autoproxy/>
+     */
+    public void adviceForAnnotation() {
+        TestManager TestManagerImpl1 = (TestManager) context.getBean("testAdviceForAnnotationImpl");
+        TestManagerImpl1.testAdd();
+        TestManagerImpl1.testAdd3();//有异常也触发
+        TestManagerImpl1.testAdd4();//after-returning 有异常不触发
+        TestManagerImpl1.testAdd6();//around
+        TestManagerImpl1.testAdd5();//after-throwing  有异常才触发
+    }
+
     public static void main(String[] a) {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         TestMain t = new TestMain(context);
 //        t.doApplicationContext();
-        t.testDao();
+//        t.testDao();
+        t.adviceForAnnotation();
+//        t.adviceForXml();
     }
 
 }

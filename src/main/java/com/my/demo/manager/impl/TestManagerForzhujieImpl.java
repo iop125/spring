@@ -14,4 +14,24 @@ public class TestManagerForzhujieImpl implements TestManager {
         System.out.println("--------------添加ok--注解");
         return null;
     }
+
+    @Override
+    public String testAdd3() {
+        return null;
+    }
+
+    @Override
+    public String testAdd4() {
+        return null;
+    }
+
+    @Override
+    public String testAdd5() {
+        return null;
+    }
+
+    @Override
+    public String testAdd6() {
+        return null;
+    }
 }

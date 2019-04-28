@@ -1,43 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-            http://www.springframework.org/schema/beans/spring-beans.xsd"
+            http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd"
        default-autowire="byName">
-    <!-- 使用默认无参构造函数-->
-    <bean id="testManager" class="com.my.demo.manager.impl.TestManagerImpl" scope="singleton">
-        <property name="string" value="12345"/>
-        <property name="testManagerFactory" ref="testManagerFactory"/>
+    <!--&lt;!&ndash; 使用默认无参构造函数&ndash;&gt;-->
+    <!--<bean id="testManager" class="com.my.demo.manager.impl.TestManagerImpl" scope="singleton">-->
+        <!--<property name="string" value="12345"/>-->
+        <!--<property name="testManagerFactory" ref="testManagerFactory"/>-->
 
-        <property name="listString">
-            <list>
-                <value>222</value>
-                <value>222</value>
-                <value>222</value>
-                <value>222</value>
-                <value>222</value>
-            </list>
-        </property>
-        <property name="listObject">
-            <list>
-                <ref bean="testManagerFactory" />
-            </list>
-        </property>
+        <!--<property name="listString">-->
+            <!--<list>-->
+                <!--<value>222</value>-->
+                <!--<value>222</value>-->
+                <!--<value>222</value>-->
+                <!--<value>222</value>-->
+                <!--<value>222</value>-->
+            <!--</list>-->
+        <!--</property>-->
+        <!--<property name="listObject">-->
+            <!--<list>-->
+                <!--<ref bean="testManagerFactory"/>-->
+            <!--</list>-->
+        <!--</property>-->
 
-        <property name="map">
-            <map>
-                <entry key="1111" value="23123"></entry>
-            </map>
-        </property>
-        <property name="setString">
-            <set>
-                <value>234234234234</value>
-            </set>
-        </property>
+        <!--<property name="map">-->
+            <!--<map>-->
+                <!--<entry key="1111" value="23123"></entry>-->
+            <!--</map>-->
+        <!--</property>-->
+        <!--<property name="setString">-->
+            <!--<set>-->
+                <!--<value>234234234234</value>-->
+            <!--</set>-->
+        <!--</property>-->
 
-    </bean>
+    <!--</bean>-->
 
-    <!-- 实例工厂（了解）-->
-    <bean id="testManagerFactory" class="com.my.demo.manager.impl.TestManagerFactory"/>
-    <bean id="testManagerByFactory" factory-bean="testManagerFactory" factory-method="createTestManagerImpl"/>
+    <!--&lt;!&ndash;&lt;!&ndash; 实例工厂（了解）&ndash;&gt;&ndash;&gt;-->
+    <!--<bean id="testManagerFactory" class="com.my.demo.manager.impl.TestManagerFactory"/>-->
+    <!--<bean id="testManagerByFactory" factory-bean="testManagerFactory" factory-method="createTestManagerImpl"/>-->
+
+    <!--aop xml -->
+
+    <!--<bean id="testAdviceForXml" class="com.my.demo.manager.impl.TestAdviceForXmlImpl" scope="singleton"/>-->
+    <bean id="myAdviceForXML" class="com.my.demo.advice.MyAdviceForXML" scope="singleton"/>
+    <aop:config>
+        <!--基于接口  通知 -->
+        <aop:aspect ref="myAdviceForXML">
+            <aop:before method="before" pointcut="execution(* *..*.*.*ForXmlImpl.testAdd(..))"></aop:before>
+            <aop:before method="before" pointcut="execution(* *..*.*.*ForXmlImpl.testAdd2(..))"></aop:before> <!--不好用基于接口 -->
+            <aop:after method="after" pointcut="execution(* *..*.*.*ForXmlImpl.testAdd3(..))"></aop:after> <!--不好用基于接口 -->
+            <aop:after-returning method="returning" pointcut="execution(* *..*.*.*ForXmlImpl.testAdd4(..))"></aop:after-returning> <!--有异常就不执行了 -->
+            <aop:after-throwing method="throwLong" pointcut="execution(* *..*.*.*ForXmlImpl.testAdd5(..))"></aop:after-throwing> <!--不好用基于接口 -->
+            <aop:around method="around" pointcut="execution(* *..*.*.*ForXmlImpl.testAdd6(..))"></aop:around> <!--除了异常 和正常代码一样死掉 -->
+        </aop:aspect>
+    </aop:config>
+
 </beans>
