@@ -30,9 +30,9 @@ public class TestMain {
     public void testDao() {
         Demo2 demo2 = (com.my.demo.dao.Demo2) context.getBean("demo2");
         //jdbc
-//        demo2.run();
+        demo2.run();
         //数据源
-        demo2.run2();
+//        demo2.run2();
     }
 
     /**
@@ -73,8 +73,8 @@ public class TestMain {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         TestMain t = new TestMain(context);
 //        t.doApplicationContext();
-//        t.testDao();
-        t.advice();
+        t.testDao();
+//        t.advice();
 //        t.adviceForAnnotation();
 //        t.adviceForXml();
     }

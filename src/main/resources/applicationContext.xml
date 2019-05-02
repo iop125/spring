@@ -23,8 +23,8 @@
     </bean>
     <!--引入多文件  模块开发-->
     <import resource="spring-config-manager.xml"/>
-    <!--<import resource="spring-config-dao.xml"/>-->
-    <!--<import resource="spring-config-datasource-dbcp.xml"/>-->
+    <import resource="spring-config-dao.xml"/>
+    <import resource="spring-config-datasource-dbcp.xml"/>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${plugin-cente.jdbc.driver}"/>
