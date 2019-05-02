@@ -20,11 +20,10 @@ public class Demo2 extends JdbcDaoSupport {
     private JdbcTemplate jdbcTemplate2;
 
 
-    public void run() {
+    public void select() {
         if (jdbcTemplate == null) {
             System.out.println("--------");
         }
-        jdbcTemplate2.update("insert into aaa values (?,?)", new Date().getTime(), 10000);
         List<Aaa> Demo2 = jdbcTemplate.query("select * from aaa ", new RowMapper<Aaa>() {
 
             @Override
@@ -40,10 +39,16 @@ public class Demo2 extends JdbcDaoSupport {
         System.out.println(Demo2);
     }
 
-    public void run2() {
+    public void insert() {
         if (jdbcTemplate2 == null) {
             System.out.println("--------");
         }
-        jdbcTemplate2.update("insert into aaa values (?,?)", new Date().getTime(), 10000);
+        for (int i = 0; i < 5; i++) {
+            if (i == 3) {
+                int o = i / 0;
+            }
+            jdbcTemplate2.update("insert into aaa values (?,?)", new Date().getTime(), 10000);
+
+        }
     }
 }

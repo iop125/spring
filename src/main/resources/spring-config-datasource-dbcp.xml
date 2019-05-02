@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-            http://www.springframework.org/schema/beans/spring-beans.xsd"
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop.xsd"
        default-autowire="byName">
 
 
@@ -15,4 +22,22 @@
     <bean id="jdbcTemplate2" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="dataSource"/>
     </bean>
+
+    <!--事务-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!--事务通知-->
+    <!--tx:advice 对应的处理类就是TransactionInterceptor类-->
+    <!--TransactionInterceptor类是实现事务通过transcation-manager属性指定的值惊醒事务管理-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="insert*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+    <!--基于 AsprctJ+xml方式实现声明式事务-->
+    <aop:config>
+        <!--spring已经实现了该功能  实现MethodInterceptor接口的方式实现的-->
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* *..* .Demo2.*(..))"/>
+    </aop:config>
 </beans>

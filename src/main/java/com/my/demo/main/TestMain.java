@@ -30,7 +30,7 @@ public class TestMain {
     public void testDao() {
         Demo2 demo2 = (com.my.demo.dao.Demo2) context.getBean("demo2");
         //jdbc
-        demo2.run();
+        demo2.insert();
         //数据源
 //        demo2.run2();
     }
