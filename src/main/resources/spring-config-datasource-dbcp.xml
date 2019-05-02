@@ -12,7 +12,6 @@
             http://www.springframework.org/schema/aop/spring-aop.xsd"
        default-autowire="byName">
 
-
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="${plugin-cente.jdbc.driver}"/>
         <property name="jdbcUrl" value="${plugin-cente.jdbc.url}"/>
@@ -27,7 +26,11 @@
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
-    <!--事务通知  要是注解的话需要开启标签 -->
+
+    <!--注解事务-->
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+
+    <!--通知 事务 要是注解的话需要开启标签 -->
     <!--tx:advice 对应的处理类就是TransactionInterceptor类-->
     <!--TransactionInterceptor类是实现事务通过transcation-manager属性指定的值惊醒事务管理-->
     <tx:advice id="txAdvice" transaction-manager="transactionManager">

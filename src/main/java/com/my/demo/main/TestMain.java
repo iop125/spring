@@ -1,5 +1,6 @@
 package com.my.demo.main;
 
+import com.my.demo.dao.Demo1;
 import com.my.demo.dao.Demo2;
 import com.my.demo.manager.TestManager;
 import com.my.demo.manager.impl.TestAdviceForGUwen;
@@ -34,7 +35,13 @@ public class TestMain {
         //数据源
 //        demo2.run2();
     }
-
+    public void testDaoForTransaction() {
+        Demo1 demo1 = (com.my.demo.dao.Demo1) context.getBean("demo1");
+        //jdbc
+        demo1.insert();
+        //数据源
+//        demo2.run2();
+    }
     /**
      * xml 配置注解
      */
@@ -73,7 +80,8 @@ public class TestMain {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         TestMain t = new TestMain(context);
 //        t.doApplicationContext();
-        t.testDao();
+//        t.testDao();
+        t.testDaoForTransaction();
 //        t.advice();
 //        t.adviceForAnnotation();
 //        t.adviceForXml();
