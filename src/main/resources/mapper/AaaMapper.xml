@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.my.demo.dao.AaaMapper">
+
+    <select id="getA" parameterType="java.lang.String" resultType="Aaa">
+        select * from aaa where name=#{name}
+    </select>
+
+
+    <insert timeout="5" id="insert" parameterType="Aaa">
+        INSERT INTO
+        aaa
+        (id,name )
+        VALUES (#{id}, #{name})
+    </insert>
+</mapper>

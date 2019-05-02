@@ -1,7 +1,8 @@
 package com.my.demo.main;
 
-import com.my.demo.dao.Demo1;
-import com.my.demo.dao.Demo2;
+import com.my.demo.dao.AaaMapper;
+import com.my.demo.dao.test.Demo1;
+import com.my.demo.dao.test.Demo2;
 import com.my.demo.manager.TestManager;
 import com.my.demo.manager.impl.TestAdviceForGUwen;
 import com.my.demo.manager.impl.TestManagerImpl;
@@ -29,14 +30,14 @@ public class TestMain {
     }
 
     public void testDao() {
-        Demo2 demo2 = (com.my.demo.dao.Demo2) context.getBean("demo2");
+        Demo2 demo2 = (Demo2) context.getBean("demo2");
         //jdbc
-        demo2.insert();
+//        demo2.insert();
         //数据源
-//        demo2.run2();
+        demo2.select();
     }
     public void testDaoForTransaction() {
-        Demo1 demo1 = (com.my.demo.dao.Demo1) context.getBean("demo1");
+        Demo1 demo1 = (Demo1) context.getBean("demo1");
         //jdbc
         demo1.insert();
         //数据源
@@ -76,15 +77,23 @@ public class TestMain {
 
     }
 
+    public void AaaMapper() {
+        AaaMapper AaaMapper = (AaaMapper) context.getBean("aaaMapper");
+        System.out.println(AaaMapper.getA("10000"));
+
+    }
+
     public static void main(String[] a) {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         TestMain t = new TestMain(context);
 //        t.doApplicationContext();
 //        t.testDao();
-        t.testDaoForTransaction();
+//        t.testDaoForTransaction();
 //        t.advice();
 //        t.adviceForAnnotation();
 //        t.adviceForXml();
+        t.AaaMapper();
+
     }
 
 }

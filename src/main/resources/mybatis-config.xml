@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--<settings>-->
+        <!--<setting name="useGeneratedKeys" value="true"/>-->
+        <!--&lt;!&ndash; 开启驼峰命名转换：Table(plugin_code) -> Entity(pluginCode) &ndash;&gt;-->
+        <!--<setting name="mapUnderscoreToCamelCase" value="true"/>-->
+        <!--&lt;!&ndash; 默认全局超时时间设置 &ndash;&gt;-->
+        <!--<setting name="defaultStatementTimeout" value="15"/>-->
+    <!--</settings>-->
+    <!--<plugins>-->
+        <!--<plugin interceptor="com.jd.plugin.dao.aop.PageInterceptor"/>-->
+    <!--</plugins>-->
+</configuration>

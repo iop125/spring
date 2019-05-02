@@ -1,4 +1,4 @@
-package com.my.demo.domain;
+package com.my.demo.domain.po;
 
 public class Aaa {
 
