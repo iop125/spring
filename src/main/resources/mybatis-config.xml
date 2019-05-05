@@ -11,6 +11,6 @@
         <!--<setting name="defaultStatementTimeout" value="15"/>-->
     <!--</settings>-->
     <!--<plugins>-->
-        <!--<plugin interceptor="com.jd.plugin.dao.aop.PageInterceptor"/>-->
+        <!--<plugin listener0="com.jd.plugin.dao.aop.PageInterceptor"/>-->
     <!--</plugins>-->
 </configuration>

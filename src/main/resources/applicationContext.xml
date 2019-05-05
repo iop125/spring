@@ -25,8 +25,7 @@
     <!--启用spring的一些annotation -->
     <context:annotation-config/>
 
-     <!--配置注解驱动 可以将request参数与绑定到controller参数上 -->
-    <mvc:annotation-driven/>
+
 
     <!--开启aop自动代理-->
     <aop:aspectj-autoproxy/>
@@ -38,6 +37,7 @@
     <!--<import resource="spring-config-datasource-${plugin-cente.jdbc.datasource.type}.xml"/>-->
     <import resource="spring-config-datasource-dbcp.xml"/>
     <import resource="spring-config-manager.xml"/>
+    <!-- 配置全局mapping的拦截器 -->
 
 
 </beans>
